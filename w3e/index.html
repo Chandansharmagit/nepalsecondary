@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
+</head>
+
+<body>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.header {
+			padding: 0 4.8rem;
+			height: 74px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			color: white;
+			background-color: #000000;
+		}
+
+		.header .logo {
+			height: 3rem;
+		}
+
+		.navbar-list {
+			display: flex;
+			gap: -17px;
+			list-style: none;
+			font-size: 12px;
+		}
+
+		.navbar-list .navlink {
+			color: white;
+		}
+
+		.navbar-link:link,
+		.navbar-link:visited {
+			display: inline-block;
+			padding-left: 19px;
+			text-transform: uppercase;
+			text-decoration: none;
+			font-size: 18px;
+			font-weight: bold;
+			color: #ffffff;
+			transition: all 0.3s;
+			padding: 23px;
+		}
+
+		.navbar-link:hover,
+		.navbar-link:active {
+			color: #6b6666;
+		}
+
+		.mobile-navbar-btn {
+			display: none;
+			background: transparent;
+			cursor: pointer;
+		}
+
+		.mobile-nav-icon {
+			width: 4rem;
+			height: 4rem;
+			color: #ffffff;
+		}
+
+		.mobile-nav-icon[name="close-outline"] {
+			display: none;
+		}
+
+		/* ===========================================
+====== */
+		.section-hero,
+		.section-services {
+			padding: 9.6rem 0;
+			background-color: #a5d8ff;
+			height: 60vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.section-hero p,
+		.section-services p {
+			font-size: 3.2rem;
+		}
+
+		/* ===========================================
+====== */
+		/* 980px  */
+		@media (max-width: 700px) {
+			.mobile-navbar-btn {
+				display: block;
+				z-index: 999;
+				border: -5px solid #212529;
+				color: #ffffff;
+			}
+
+			.header {
+				position: relative;
+			}
+
+			.header .logo {
+				width: 40%;
+			}
+
+			.navbar {
+				/* display: none; */
+				width: 100%;
+				height: 100vh;
+				background: #95999c;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 2;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				/* to get the tranisition  */
+				transform: translateX(100%);
+				transition: all 0.5s linear;
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+			}
+
+			.navbar-list {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.active .navbar {
+				transform: translateX(0);
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+			}
+
+			.active .mobile-navbar-btn .mobile-nav-icon[name="close-outline"] {
+				display: block;
+			}
+
+			.active .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"] {
+				display: none;
+			}
+		}
+
+		/* Below 560px  */
+		@media (max-width: 35em) {
+			.header- {
+				padding: 0 2.4rem;
+			}
+
+			.header .logo {
+				width: 60%;
+			}
+		}
+
+		header {
+			height: 129px;
+			background: whitesmoke;
+
+		}
+
+		.logo img {
+			width: auto;
+			position: absolute;
+			height: 124px;
+			padding-left: 34px;
+			padding-bottom: 12px;
+
+		}
+
+		.info-id {
+			padding-top: 35px;
+			float: left;
+			margin-left: 145px;
+		}
+
+		.info-id-id {
+			float: right;
+		}
+
+		.info-id-id li {
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 18px;
+			padding-top: 14px;
+			margin-right: 15px;
+			transition: 0.5s;
+
+		}
+
+		.info-id-id li:hover {
+			transform: scale(1.1);
+			color: blue;
+		}
+
+		.info-id-id a {
+			text-decoration: none;
+			padding-left: 14px;
+			color: black;
+		}
+
+		.info-id-id li {
+			list-style: none;
+		}
+
+		.info-id-id a:hover {
+			text-decoration: double black;
+		}
+
+		.info-id-id .mail {
+			padding-top: 23px;
+		}
+
+		@media (max-width: 700px) {
+			header {
+				height: 210px;
+			}
+		}
+
+		@media (max-width: 700px) {
+			.info-id {
+				padding-top: 5px;
+			}
+		}
+
+		.sticky {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 100;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+		}
+
+		.burger {
+			display: none;
+			cursor: pointer;
+		}
+
+		.burger .line {
+			width: 25px;
+			height: 2px;
+			background-color: #333;
+			margin: 5px;
+		}
+
+		.text-box {
+			border: 1px solid #ccc;
+			padding: 20px;
+			margin: 10px;
+			max-width: 100%;
+			position: relative;
+		}
+
+		/* footer css start from here */
+		footer {
+			background-color: rgb(24, 27, 27);
+			color: #fff;
+			padding: 40px 0;
+		}
+
+		footer h3 {
+			font-size: 18px;
+			color: #fff;
+			margin-bottom: 20px;
+			margin-left: 126px;
+		}
+
+		footer p {
+			font-size: 14px;
+			line-height: 20px;
+			margin-bottom: 20px;
+		}
+
+		footer ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			margin-left: 128px;
+		}
+
+		footer hr {
+			border-color: #fff;
+		}
+
+		footer ul li {
+			font-size: 14px;
+			line-height: 20px;
+			margin-bottom: 10px;
+			transition: 0.5s;
+		}
+
+		footer ul li i {
+			margin-right: 10px;
+		}
+
+		footer ul li:hover {
+			transform: scale(1.1);
+		}
+
+		.social-links li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		.social-links li a {
+			color: whitesmoke;
+			font-size: 24px;
+			display: block;
+			line-height: 40px;
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			border-radius: 50%;
+			-webkit-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.social-links li a:hover {
+			background-color: #fff;
+			color: #333;
+		}
+
+		.tel {
+			color: white;
+			text-decoration: none;
+			transition: 0.5s;
+		}
+
+		.tel:hover {
+			color: orange;
+		}
+
+		footer .row-row {
+			display: flex;
+			margin-left: 34px;
+		}
+
+		footer .media-icons {
+			color: orange;
+		}
+
+		footer .containerr .copy {
+			text-align: center;
+			margin-bottom: -30px;
+		}
+
+		footer .containerr hr {
+			margin-left: 81px;
+			margin-right: 81px;
+		}
+
+		@media (max-width: 700px) {
+			.row-row {
+				flex-direction: column;
+			}
+		}
+
+		.card-list {
+			display: flex;
+			flex-wrap: wrap;
+			background: url("blur.jpeg");
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.card {
+			width: 100%;
+			max-width: 500px;
+			background-color: #fff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			margin: 20px;
+			transition: 0.4s;
+			margin-left: 23px;
+		}
+
+		.card-header {
+			padding: 20px;
+			background-color: #f7f7f7;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.card-header h2 {
+			margin-top: 0;
+		}
+
+		.card-date-time {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.card-body {
+			padding: 20px;
+		}
+
+		.id-card h1 {
+			text-align: center;
+			padding-top: 23px;
+			background-color: rgb(233 229 224);
+			text-transform: uppercase;
+			padding-bottom: 12px;
+
+		}
+
+		.card:hover {
+			transform: scale(1.1);
+			box-shadow: 0 0 5px 5px rgba(47, 39, 43, 0.31);
+		}
+
+		@media (min-width: 768px) {
+			.card {
+				width: calc(50% - 40px);
+			}
+		}
+	</style>
+	<header>
+		<div class="logo">
+			<img src="logo4.png">
+		</div>
+		<div class="info-id">
+			<h1>Nepal Model Secondary School</h1>
+			<p>Devchuli-1 Keureni</p>
+		</div>
+		<div class="info-id-id">
+			<li><i class="fa fa-phone"></i> <a href="tel:+9779845427041">+977647657346</a>
+			<li><i class="fa fa-envelope"></i>
+				<a href="mailto:nepasecondary45@gmail.com">nepalsecondary34@gmail.com</a>
+			</li>
+			<li><i class="fa fa-envelope"></i>
+				<a href="contact.html">contact us</a>
+			</li>
+		</div>
+	</header>
+	<header class="header">
+		<div class="logo-id-id-1">NEPAL MSC</div>
+		<nav class="navbar">
+			<ul class="navbar-list">
+				<li><a class="navbar-link" href="index.html">HOME</a></li>
+				<li><a class="navbar-link" href="notices.html">NOTICES</a></li>
+				<li><a class="navbar-link" href="index.html">EVENTS</a></li>
+				<li><a class="navbar-link" href="contact.html">ADMINISTRATION</a></li>
+				<li><a class="navbar-link" href="Result.html">RESULTS</a></li>
+				<li><a class="navbar-link" href="members.html">MEMBERS</a></li>
+			</ul>
+		</nav>
+		<div class="mobile-navbar-btn">
+			<ion-icon name="menu-outline" class="mobile-nav-icon"></ion-icon>
+			<ion-icon name="close-outline" class="mobile-nav-icon"></ion-icon>
+		</div>
+	</header>
+	<div class="id-card">
+		<h1>Events of this Months</h1>
+	</div>
+	<div class="card-list">
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">2022/2/1<br>1:24pm</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">Date and Time</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">Date and Time</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">Date and Time</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">Date and Time</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<h2>Card Header</h2>
+				<p class="card-date-time">Date and Time</p>
+			</div>
+			<div class="card-body">
+				<p>Card Paragraph</p>
+			</div>
+		</div>
+		<!-- Repeat the card structure for additional cards -->
+	</div>
+
+	<footer>
+		<div class="containerr">
+			<div class="row-row">
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<h3>About Us</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Sed non risus. Suspendisse
+						lectus
+						tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<h3>Contact Us</h3>
+					<ul>
+						<li><i class="fa fa-map-marker" class="tel"></i>123 Main Street, Anytown USA 12345</li>
+						<li><i class="fa fa-phone"></i><a href="tel:+9779845427041" class="tel">+977647657346</a></li>
+						<li><i class="fa fa-envelope"></i>
+							<a href="mailto:nepasecondary45@gmail.com" class="tel">nepalschool23@gmail.com</a>
+						</li>
+
+
+					</ul>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<h3>Follow Us</h3>
+					<ul class="social-links">
+						<li><a href="#"><i class='fab fa-facebook-f'></i></a></li>
+						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+						<li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+
+					</ul>
+				</div>
+			</div>
+			<hr>
+			<h3 class="copy">@copyright issues created by chandan sharma</h3>
+		</div>
+	</footer>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script>
+		const mobile_nav = document.querySelector(".mobile-navbar-btn");
+		const nav_header = document.querySelector(".header");
+		const toggleNavbar = () => {
+			// alert("Plz Subscribe ");
+			nav_header.classList.toggle("active");
+		};
+		mobile_nav.addEventListener("click", () => toggleNavbar());
+	</script>
+
+	<script>
+		function updateTime() {
+			var now = new Date();
+			var date = now.toDateString();
+			var time = now.toLocaleTimeString();
+			document.getElementById("date").innerHTML = date;
+			document.getElementById("time").innerHTML = time;
+			document.getElementById("date2").innerHTML = date;
+			document.getElementById("time2").innerHTML = time;
+			document.getElementById("date3").innerHTML = date;
+			document.getElementById("time3").innerHTML = time;
+			document.getElementById("date4").innerHTML = date;
+			document.getElementById("time4").innerHTML = time;
+		}
+		updateTime();
+		setInterval(updateTime, 1000);
+	</script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$('.hero').slick({
+				dots: true,
+				infinite: true,
+				speed: 500,
+				fade: !0,
+				cssEase: 'linear',
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				autoplaySpeed: 8000,
+				draggable: false,
+				arrows: false,
+				responsive: [
+					{
+						breakpoint: 1024,
+						settings: {
+							slidesToShow: 1,
+							slidesToScroll: 1,
+							infinite: true
+						}
+					},
+					{
+						breakpoint: 768,
+						settings: {
+							draggable: true,
+						}
+					},
+					{
+						breakpoint: 600,
+						settings: {
+							slidesToShow: 1,
+							draggable: true,
+							slidesToScroll: 1
+						}
+					},
+					{
+						breakpoint: 480,
+						settings: {
+							slidesToShow: 1,
+							draggable: true,
+							slidesToScroll: 1
+						}
+					}
+				]
+			});
+		});
+	</script>
+</body>
+
+</html>
